@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treatment Options for MIH &middot; A Discussion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--au-navy:#003359;--au-navy-deep:#002240;--au-navy-mid:#0a4a75;--au-navy-soft:#336685;--ink:#003359;--ink-mid:#58676e;--ink-soft:#8b949a;--paper:#FFFFFF;--paper-tint:#EEEEEE;--line:#e0e4e6;--surface-card:#FFFFFF;--surface-muted:#f0f2f3;--au-green:#44D62C;--au-green-deep:#38b024;--au-green-pale:#d9f5d5;--au-gray:#A5ACAF;--au-gray-pale:#c5cacc;--spring:cubic-bezier(.5,1.5,.4,1)}
+body.dark{--ink:#FFFFFF;--ink-mid:#A5ACAF;--ink-soft:#6F7679;--paper:#002240;--paper-tint:#001a30;--line:#0a4a75;--surface-card:#00304f;--surface-muted:rgba(165,172,175,0.12);background:#001423}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;background:var(--au-navy-deep)}
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;visibility:hidden;opacity:0;pointer-events:none;z-index:1;overflow-y:auto;background:radial-gradient(120% 90% at 50% 0%,#FFFFFF 0%,#F3F4F5 55%,#EEEEEE 100%)}
+body.dark .slide{background:radial-gradient(120% 90% at 50% 0%,#003354 0%,#001d34 55%,#001423 100%)}
+.slide.prev{visibility:visible;opacity:1;pointer-events:none;z-index:2}
+.slide.active{visibility:visible;opacity:1;pointer-events:auto;z-index:3;transition:opacity .5s ease}
+.slide.entering{opacity:0}
+.slide-inner{width:100%;min-height:100%;max-width:1180px;margin:0 auto;padding:52px 76px 88px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.slide-inner.top{justify-content:flex-start;padding-top:46px}
+.chrome-top{position:absolute;top:0;left:0;right:0;height:6px;background:var(--au-green);z-index:5}
+.event-ribbon{position:absolute;top:24px;left:76px;font-family:"Montserrat",sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;z-index:6}
+.event-ribbon .dot{display:inline-block;width:5px;height:5px;background:var(--au-green);border-radius:50%;margin:0 9px;vertical-align:middle}
+.au-shield{position:fixed;top:18px;right:22px;z-index:50;width:clamp(30px,3.4vw,44px);height:auto;pointer-events:none;opacity:.95}
+
+.slide.title-slide{background:var(--paper-tint)}
+body.dark .slide.title-slide{background:var(--paper)}
+.title-kicker{font-family:"Source Sans 3",sans-serif;font-style:italic;font-size:clamp(15px,1.6vw,19px);color:var(--ink);font-weight:400;margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.title-kicker::before{content:"";width:56px;height:2px;background:var(--au-green);display:inline-block}
+.title-slide h1{font-family:"Montserrat",sans-serif;font-size:clamp(36px,5.2vw,76px);font-weight:700;line-height:.99;color:var(--ink);letter-spacing:-.025em;margin-bottom:14px}
+.title-slide h1 .sub{display:block;font-size:.30em;font-weight:500;color:var(--au-navy-mid);letter-spacing:-.005em;margin-top:18px;line-height:1.25}
+body.dark .title-slide h1 .sub{color:var(--au-navy-soft)}
+.title-credentials{margin-top:38px;padding-top:26px;border-top:1px solid var(--line);display:flex;gap:46px;flex-wrap:wrap}
+.cm-label{display:block;font-family:"Montserrat",sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.cm-value{font-size:14.5px;color:var(--ink);font-weight:600}
+
+.kicker{font-family:"Montserrat",sans-serif;font-size:10.5px;letter-spacing:.22em;color:var(--au-green-deep);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.kicker::before{content:"";width:36px;height:2px;background:var(--au-green);flex:none}
+.kicker .kt{color:var(--ink-soft)}
+body.dark .kicker{color:var(--au-green)}
+.c-title{font-family:"Montserrat",sans-serif;font-size:clamp(25px,3.1vw,38px);font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-.02em;margin-bottom:11px}
+.c-title em{font-family:"Source Sans 3",sans-serif;font-style:italic;font-weight:300;color:var(--au-navy-mid)}
+.c-lead{font-size:clamp(14px,1.45vw,16.5px);color:var(--ink-mid);line-height:1.5;max-width:900px;margin-bottom:17px}
+.c-lead strong{color:var(--ink);font-weight:700}
+
+.slide--navy{background:linear-gradient(155deg,#0a4a75 0%,#003359 55%,#002240 100%)}
+body.dark .slide--navy{background:linear-gradient(155deg,#012a44 0%,#001a30 60%,#000d18 100%)}
+.sec-kick{font-family:"Montserrat",sans-serif;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--au-green);font-weight:700;margin-bottom:16px}
+.sec-title{font-family:"Montserrat",sans-serif;font-size:clamp(28px,4.4vw,54px);font-weight:700;color:#fff;line-height:1.03;letter-spacing:-.025em;max-width:920px}
+.sec-title em{font-family:"Source Sans 3",sans-serif;font-style:italic;font-weight:300;color:rgba(255,255,255,.72)}
+.sec-sub{color:rgba(255,255,255,.72);font-size:clamp(14px,1.6vw,18px);margin-top:18px;max-width:780px;line-height:1.5}
+.optrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.optchip{border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:9px 20px;font-family:"Montserrat",sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;color:#fff}
+.optchip b{color:var(--au-green);font-weight:800;margin-right:8px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid2.wide-left{grid-template-columns:1.25fr 1fr}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.panel{background:var(--surface-card);border:1px solid var(--line);border-radius:18px;padding:19px 21px;box-shadow:0 10px 30px rgba(0,30,54,.06)}
+body.dark .panel{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);box-shadow:none}
+.panel.accent{border-top:4px solid var(--au-green-deep)}
+.panel.navyline{border-top:4px solid var(--au-navy)}
+.panel.grayline{border-top:4px solid var(--au-gray)}
+.p-name{font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.01em;display:block;margin-bottom:3px}
+.p-tag{font-family:"Montserrat",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:12px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px}
+body.dark .kv{border-color:rgba(165,172,175,.14)}
+.kv:first-of-type{border-top:none}
+.kv .k{color:var(--ink-soft)}
+.kv .v{color:var(--ink);font-weight:600;text-align:right;font-family:"Montserrat",sans-serif}
+.kv .v.good{color:var(--au-green-deep)}
+
+.callout{display:flex;gap:13px;align-items:flex-start;background:var(--au-navy);border-radius:14px;padding:14px 20px;margin-top:15px}
+body.dark .callout{background:#000d18}
+.callout .cl{font-family:"Montserrat",sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--au-green);margin-bottom:5px}
+.callout .ct{font-size:clamp(13px,1.35vw,15px);color:rgba(255,255,255,.9);line-height:1.55}
+.callout .ct b{color:#fff;font-weight:600}
+.callout .ct em{color:var(--au-green);font-style:normal;font-weight:600}
+
+.dsheet{width:100%;border-collapse:collapse;font-size:clamp(11.5px,1.25vw,14px)}
+.dsheet th{font-family:"Montserrat",sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:0 11px 9px;border-bottom:2px solid var(--au-green)}
+.dsheet th.rt,.dsheet td.rt{text-align:right}
+.dsheet td{padding:7px 11px;border-bottom:1px solid var(--line);color:var(--ink-mid);vertical-align:top}
+body.dark .dsheet td{border-color:rgba(165,172,175,.13)}
+.dsheet td.p{font-family:"Montserrat",sans-serif;font-weight:700;color:var(--ink)}
+.dsheet td.val{font-family:"Montserrat",sans-serif;font-weight:700;color:var(--ink);white-space:nowrap}
+.dsheet td.val.good{color:var(--au-green-deep)}
+.dsheet td.m{font-size:11.5px;color:var(--ink-soft)}
+.dsheet tr:last-child td{border-bottom:none}
+
+ul.clean{list-style:none;display:flex;flex-direction:column;gap:8px}
+ul.clean li{font-size:13.5px;line-height:1.5;color:var(--ink-mid);padding-left:16px;position:relative}
+ul.clean li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:2px;background:var(--au-green-deep)}
+ul.clean li strong{font-family:"Montserrat",sans-serif;font-weight:700;font-size:12.5px;color:var(--ink)}
+
+sup.r{font-family:"Montserrat",sans-serif;font-size:.62em;font-weight:700;color:var(--au-green-deep);vertical-align:super;margin-left:2px}
+body.dark sup.r{color:var(--au-green)}
+.callout sup.r,.sec-sub sup.r{color:var(--au-green)}
+.srcline{font-size:11.5px;color:var(--ink-soft);margin-top:11px;font-style:italic}
+
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pill{font-family:"Montserrat",sans-serif;font-size:9px;font-weight:800;border-radius:4px;padding:4px 9px;letter-spacing:.09em;text-transform:uppercase}
+.p-min{background:var(--au-green-pale);color:var(--au-green-deep)}
+.p-mid{background:var(--surface-muted);color:var(--au-navy-mid)}
+.p-max{background:var(--au-navy);color:#fff}
+.p-evi{background:var(--au-gray-pale);color:var(--au-navy)}
+
+/* invasiveness meter */
+.meter{display:flex;gap:4px;margin:2px 0 12px}
+.meter i{height:6px;flex:1;border-radius:3px;background:var(--surface-muted)}
+.meter i.on{background:var(--au-green-deep)}
+.meter i.on.hi{background:var(--au-navy)}
+
+/* ladder */
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
+.rung{background:var(--surface-muted);border-radius:14px;border-top:3px solid var(--au-green-deep);padding:14px 16px}
+.rung.r2{border-top-color:var(--au-green)}
+.rung.r3{border-top-color:var(--au-navy-soft)}
+.rung.r4{border-top-color:var(--au-green);background:var(--au-navy-deep)}
+.rung .step{font-family:"Montserrat",sans-serif;font-weight:800;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--au-green-deep)}
+.rung.r3 .step{color:var(--au-navy-mid)}
+.rung.r4 .step{color:var(--au-green)}
+.rung h5{font-family:"Montserrat",sans-serif;font-weight:700;font-size:14px;color:var(--ink);margin:5px 0 7px}
+.rung.r4 h5{color:#fff}
+.rung p{font-size:12px;line-height:1.48;color:var(--ink-mid)}
+.rung.r4 p{color:rgba(255,255,255,.78)}
+
+ol.proto{list-style:none;counter-reset:pstep;display:flex;flex-direction:column;gap:7px}
+ol.proto li{counter-increment:pstep;position:relative;padding-left:29px;font-size:13px;line-height:1.48;color:var(--ink-mid)}
+ol.proto li::before{content:counter(pstep);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--au-navy);color:#fff;font-family:"Montserrat",sans-serif;font-weight:700;font-size:9.5px;display:flex;align-items:center;justify-content:center}
+ol.proto li strong{font-family:"Montserrat",sans-serif;font-weight:700;font-size:12px;color:var(--ink)}
+
+/* reading room */
+.rr{margin-top:14px}
+.rr-frame{width:100%;height:min(70vh,680px);border:1px solid var(--line);border-radius:16px;display:block;background:var(--paper-tint);box-shadow:0 10px 30px rgba(0,30,54,.06)}
+body.dark .rr-frame{border-color:rgba(255,255,255,.08)}
+.rr-meta{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:10px}
+.rr-cite{font-size:12.5px;color:var(--ink-soft)}
+.rr-cite i{font-style:italic}
+.rr-tab{font-family:"Montserrat",sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--au-green-deep);text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:color .2s}
+.rr-tab::after{content:"\2197";font-size:12px}
+.rr-tab:hover{color:var(--au-navy)}
+body.dark .rr-tab{color:var(--au-green)}
+body.dark .rr-tab:hover{color:#fff}
+
+/* QR */
+.qr-block{display:flex;align-items:center;gap:18px}
+.qr{width:clamp(104px,9vw,132px);height:clamp(104px,9vw,132px);flex:none;color:var(--au-navy);transition:color .25s}
+body.dark .qr{color:#fff}
+.qr-text{display:flex;flex-direction:column}
+.qr-text .cm-label{margin-bottom:5px}
+.qr-url{font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.01em;text-decoration:none}
+.qr-url:hover{color:var(--au-green-deep)}
+
+.reflist{columns:2;column-gap:38px;font-size:12px;color:var(--ink-mid);line-height:1.42}
+.reflist div{break-inside:avoid;margin-bottom:8px;padding-left:25px;position:relative}
+.reflist div b{position:absolute;left:0;top:0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:10.5px;color:var(--au-green-deep)}
+.reflist div i{font-style:italic;color:var(--ink-soft)}
+
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.qcard{background:var(--surface-card);border:1px solid var(--line);border-left:4px solid var(--au-green-deep);border-radius:0 14px 14px 0;padding:15px 20px;display:flex;gap:15px;align-items:flex-start}
+body.dark .qcard{background:rgba(255,255,255,.04)}
+.qnum{font-family:"Montserrat",sans-serif;font-weight:800;font-size:15px;color:var(--au-green-deep);line-height:1.2;flex:none;padding-top:1px}
+.qtext{min-width:0}
+.qask{display:block;font-family:"Montserrat",sans-serif;font-weight:700;font-size:clamp(15px,1.6vw,18px);color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:6px}
+.qwhy{display:block;font-size:13.5px;color:var(--ink-mid);line-height:1.5}
+.qwhy b{color:var(--ink);font-weight:600}
+
+.closing-kicker{font-family:"Montserrat",sans-serif;font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--au-green);display:flex;align-items:center;gap:16px;margin-bottom:30px}
+.closing-kicker::before{content:"";width:48px;height:2px;background:var(--au-green)}
+.closing-title{font-family:"Montserrat",sans-serif;font-size:clamp(38px,5.8vw,84px);font-weight:700;letter-spacing:-.03em;line-height:.97;color:#fff}
+.closing-line{width:64px;height:3px;background:var(--au-green);margin:30px 0 0}
+.closing-meta{display:flex;gap:54px;flex-wrap:wrap;margin-top:32px}
+.slide--navy .cm-label{color:rgba(255,255,255,.5)}
+.slide--navy .cm-value{color:#fff}
+
+.reveal{opacity:0;transform:translateY(18px)}
+.slide.active .reveal{animation:revealUp .8s var(--spring) forwards}
+.slide.active .reveal.d1{animation-delay:.06s}
+.slide.active .reveal.d2{animation-delay:.16s}
+.slide.active .reveal.d3{animation-delay:.3s}
+.slide.active .reveal.d4{animation-delay:.44s}
+@keyframes revealUp{to{opacity:1;transform:translateY(0)}}
+
+.nav-controls{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,30,54,.92);border:1px solid rgba(68,214,44,.3);border-radius:100px;padding:8px 12px;z-index:100;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,30,54,.25)}
+.nav-btn{width:32px;height:32px;border-radius:50%;border:none;background:transparent;color:#f2f4f5;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;transition:background .2s}
+.nav-btn:hover{background:rgba(68,214,44,.2)}
+.nav-btn:focus-visible{outline:2px solid var(--au-green);outline-offset:2px}
+.nav-dots{display:flex;gap:5px;padding:0 6px;max-width:320px;flex-wrap:wrap;justify-content:center}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(165,172,175,.4);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}
+.nav-dot.active{background:var(--au-green);transform:scale(1.4)}
+.nav-dot:focus-visible{outline:2px solid var(--au-green);outline-offset:3px}
+.nav-counter{font-family:"Montserrat",sans-serif;font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.7);font-weight:600;padding:0 6px;min-width:52px;text-align:center}
+.nav-counter .current{color:var(--au-green);font-weight:700}
+.fs-btn,.theme-btn{position:fixed;bottom:26px;width:32px;height:32px;border:none;border-radius:50%;background:rgba(0,30,54,.35);color:rgba(255,255,255,.55);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;z-index:99;transition:background .25s,color .25s,opacity .25s;opacity:.5;backdrop-filter:blur(6px)}
+.fs-btn{right:26px}
+.theme-btn{right:66px}
+.fs-btn:hover,.theme-btn:hover{background:rgba(0,30,54,.85);color:var(--au-green);opacity:1}
+.theme-btn .sun{display:none}
+body.dark .theme-btn .sun{display:block}
+body.dark .theme-btn .moon{display:none}
+
+@media (max-width:1040px){
+  .slide-inner{padding:44px 22px 84px}
+  .event-ribbon{left:22px}
+  .grid2,.grid2.wide-left,.grid3,.qgrid{grid-template-columns:1fr}
+  .ladder{grid-template-columns:1fr 1fr}
+  .rr-frame{height:min(58vh,520px)}
+  .qr{width:96px;height:96px}
+  .reflist{columns:1}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<img class="au-shield" src="data:image/png;base64,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" alt="Augusta University">
+<div class="deck">
+
+<!-- 1 TITLE -->
+<section class="slide title-slide">
+  <div class="chrome-top"></div>
+  <div class="slide-inner">
+    <div class="title-kicker reveal d1">A discussion for pediatric dentists</div>
+    <h1 class="reveal d2">Treatment Options<br>for MIH Cases
+      <span class="sub">Bleaching, microabrasion, resin infiltration, and resin composite restoration: what each one does, what the evidence supports, and how to sequence them</span>
+    </h1>
+    <div class="title-credentials reveal d3">
+      <div><span class="cm-label">Presented by</span><span class="cm-value">Rafael Rocha Pacheco, DDS, MSc, PhD</span></div>
+      <div><span class="cm-label">Institution</span><span class="cm-value">Dental College of Georgia, Augusta University</span></div>
+      <div><span class="cm-label">Includes</span><span class="cm-value">Full reader for Oper Dent 2020;45(4):343-351</span></div>
+      <div class="qr-block">
+        <svg class="qr" viewBox="-4 -4 37 37" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QR code linking to pachecodcg.github.io/mih"><path fill="currentColor" d="M0 0h7v1h-7zM10 0h2v1h-2zM14 0h1v1h-1zM17 0h2v1h-2zM22 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM12 1h2v1h-2zM17 1h3v1h-3zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM14 2h3v1h-3zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h3v1h-3zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h5v1h-5zM14 3h1v1h-1zM16 3h2v1h-2zM19 3h2v1h-2zM22 3h1v1h-1zM24 3h3v1h-3zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h2v1h-2zM11 4h1v1h-1zM15 4h2v1h-2zM18 4h2v1h-2zM22 4h1v1h-1zM24 4h3v1h-3zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h4v1h-4zM15 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h7v1h-7zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM15 7h2v1h-2zM19 7h2v1h-2zM1 8h1v1h-1zM3 8h4v1h-4zM8 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM17 8h3v1h-3zM21 8h2v1h-2zM24 8h2v1h-2zM27 8h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM9 9h6v1h-6zM16 9h4v1h-4zM23 9h5v1h-5zM0 10h1v1h-1zM2 10h2v1h-2zM6 10h3v1h-3zM11 10h3v1h-3zM17 10h2v1h-2zM20 10h6v1h-6zM1 11h3v1h-3zM9 11h1v1h-1zM11 11h1v1h-1zM13 11h8v1h-8zM24 11h1v1h-1zM28 11h1v1h-1zM0 12h3v1h-3zM4 12h1v1h-1zM6 12h2v1h-2zM9 12h3v1h-3zM13 12h1v1h-1zM16 12h1v1h-1zM20 12h3v1h-3zM25 12h1v1h-1zM27 12h1v1h-1zM0 13h2v1h-2zM3 13h1v1h-1zM5 13h1v1h-1zM7 13h2v1h-2zM13 13h6v1h-6zM22 13h1v1h-1zM24 13h1v1h-1zM26 13h1v1h-1zM28 13h1v1h-1zM0 14h1v1h-1zM3 14h4v1h-4zM8 14h1v1h-1zM10 14h2v1h-2zM16 14h2v1h-2zM19 14h1v1h-1zM21 14h1v1h-1zM23 14h1v1h-1zM25 14h1v1h-1zM28 14h1v1h-1zM0 15h2v1h-2zM5 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM16 15h1v1h-1zM20 15h1v1h-1zM22 15h1v1h-1zM24 15h4v1h-4zM0 16h3v1h-3zM4 16h1v1h-1zM6 16h1v1h-1zM9 16h2v1h-2zM12 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM0 17h6v1h-6zM7 17h1v1h-1zM9 17h2v1h-2zM13 17h1v1h-1zM16 17h4v1h-4zM21 17h1v1h-1zM24 17h3v1h-3zM0 18h7v1h-7zM8 18h3v1h-3zM13 18h5v1h-5zM19 18h2v1h-2zM24 18h2v1h-2zM28 18h1v1h-1zM0 19h2v1h-2zM3 19h3v1h-3zM8 19h2v1h-2zM11 19h1v1h-1zM13 19h1v1h-1zM20 19h3v1h-3zM26 19h1v1h-1zM0 20h3v1h-3zM5 20h5v1h-5zM12 20h1v1h-1zM16 20h2v1h-2zM19 20h10v1h-10zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h2v1h-2zM17 21h4v1h-4zM24 21h3v1h-3zM0 22h7v1h-7zM10 22h2v1h-2zM13 22h1v1h-1zM15 22h3v1h-3zM19 22h2v1h-2zM22 22h1v1h-1zM24 22h1v1h-1zM26 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h3v1h-3zM13 23h3v1h-3zM17 23h1v1h-1zM19 23h2v1h-2zM24 23h2v1h-2zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h1v1h-1zM8 24h4v1h-4zM16 24h1v1h-1zM19 24h6v1h-6zM28 24h1v1h-1zM0 25h1v1h-1zM2 25h3v1h-3zM6 25h1v1h-1zM8 25h1v1h-1zM12 25h5v1h-5zM18 25h1v1h-1zM23 25h1v1h-1zM26 25h1v1h-1zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h3v1h-3zM6 26h1v1h-1zM11 26h2v1h-2zM14 26h2v1h-2zM17 26h2v1h-2zM20 26h2v1h-2zM23 26h2v1h-2zM26 26h3v1h-3zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM13 27h1v1h-1zM16 27h1v1h-1zM21 27h2v1h-2zM24 27h3v1h-3zM28 27h1v1h-1zM0 28h7v1h-7zM9 28h2v1h-2zM13 28h1v1h-1zM19 28h2v1h-2zM23 28h2v1h-2z"/></svg>
+        <span class="qr-text">
+          <span class="cm-label">Slides and paper</span>
+          <a class="qr-url" href="https://pachecodcg.github.io/mih" target="_blank" rel="noopener">pachecodcg.github.io/mih</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 WHAT WE ARE TREATING -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> The problem</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Starting point</div>
+    <div class="c-title reveal d2">A Qualitative Defect, <em>Not</em> a Missing Layer</div>
+    <div class="c-lead reveal d2">MIH is a systemically derived, qualitative enamel defect affecting at least one first permanent molar, with or without incisor involvement.<sup class="r">1</sup> The enamel is present in normal volume but under-mineralized, which is why it looks opaque, feels sensitive, breaks down under load, and bonds badly.</div>
+    <div class="grid2 reveal d3">
+      <div class="panel navyline">
+        <span class="p-name">What you are grading chairside</span>
+        <span class="p-tag">EAPD criteria</span>
+        <div class="kv"><span class="k">Demarcated opacity</span><span class="v">White, creamy, yellow, or brown</span></div>
+        <div class="kv"><span class="k">Post-eruptive breakdown</span><span class="v">Enamel loss after eruption</span></div>
+        <div class="kv"><span class="k">Atypical restoration</span><span class="v">Restoration outside caries pattern</span></div>
+        <div class="kv"><span class="k">Atypical caries</span><span class="v">Caries following the defect</span></div>
+        <div class="kv"><span class="k">Missing due to MIH</span><span class="v">Extracted for the defect</span></div>
+        <div class="srcline">Examine at around eight years, when first permanent molars and incisors are erupted but destruction is still limited. Teeth should be clean and examined wet.<sup class="r">2</sup></div>
+      </div>
+      <div class="panel accent">
+        <span class="p-name">Why these cases are hard</span>
+        <span class="p-tag">The pediatric reality</span>
+        <ul class="clean">
+          <li><strong>Sensitivity and anesthesia.</strong> Hypersensitivity complicates isolation and profound anesthesia, so treatment tolerance shapes the plan as much as the lesion does.<sup class="r">2</sup></li>
+          <li><strong>Color predicts fate.</strong> Yellow and brown opacities are more porous and progress to breakdown more often than white or creamy ones.<sup class="r">5</sup></li>
+          <li><strong>Bacteria get in first.</strong> Bacteria have been demonstrated in dentinal tubules beneath apparently intact but hypomineralized enamel.<sup class="r">6</sup></li>
+          <li><strong>Repeat treatment is the norm.</strong> Restorations placed on affected tissue fail and get replaced, so the first decision sets the restorative cycle for decades.<sup class="r">16</sup></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout reveal d4"><div>
+      <div class="cl">Framing for this talk</div>
+      <div class="ct">Every option on the table answers a different question. Bleaching changes the <b>surrounding</b> enamel, microabrasion removes the <b>outer</b> enamel, infiltration fills the <b>lesion body</b>, and composite replaces <b>what is gone</b>. Choosing well means knowing which of those the lesion in front of you actually needs.</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 3 THE TISSUE -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> The tissue</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Why nothing behaves normally</div>
+    <div class="c-title reveal d2">The Lesion Starts <em>Inside</em> and Works Outward</div>
+    <div class="c-lead reveal d2">Unlike caries, hypomineralization begins at the dentino-enamel junction. In mild cases the outer surface stays intact; in severe cases the full enamel thickness is affected. That single fact explains why surface treatments have a ceiling.<sup class="r">4</sup></div>
+    <div class="grid3 reveal d3">
+      <div class="panel">
+        <span class="p-name">Mineral</span>
+        <span class="p-tag">Compared with sound enamel</span>
+        <div class="kv"><span class="k">Mineral volume</span><span class="v">58.8 vol%</span></div>
+        <div class="kv"><span class="k">Carbonate, MIH</span><span class="v">6.6 wt%</span></div>
+        <div class="kv"><span class="k">Carbonate, control</span><span class="v">4.4 wt%</span></div>
+        <div class="srcline">Higher carbonate and protein hamper hydroxyapatite crystal growth.<sup class="r">3,4</sup></div>
+      </div>
+      <div class="panel">
+        <span class="p-name">Mechanics</span>
+        <span class="p-tag">Vickers microhardness</span>
+        <div class="kv"><span class="k">MIH enamel</span><span class="v">1.8 &plusmn; 1.1 GPa</span></div>
+        <div class="kv"><span class="k">Sound control</span><span class="v good">4.4 &plusmn; 1.0 GPa</span></div>
+        <div class="kv"><span class="k">Difference</span><span class="v">p &lt; 0.05</span></div>
+        <div class="srcline">Roughly 40% of the hardness of sound enamel.<sup class="r">3</sup></div>
+      </div>
+      <div class="panel">
+        <span class="p-name">Porosity</span>
+        <span class="p-tag">Polarised light microscopy</span>
+        <div class="kv"><span class="k">Bulk of lesion</span><span class="v">At or below 5%</span></div>
+        <div class="kv"><span class="k">Substantial areas</span><span class="v">At or above 10%</span></div>
+        <div class="kv"><span class="k">Smaller zones</span><span class="v">Beyond 25%</span></div>
+        <div class="srcline">A surface layer is frequently present over both intact and broken-down lesions, and cervical regions are typically spared.<sup class="r">3</sup></div>
+      </div>
+    </div>
+    <div class="callout reveal d4"><div>
+      <div class="cl">The clinical translation</div>
+      <div class="ct">Porosity is not uniform, the lesion body is not uniformly accessible, and the outer surface is often the least affected part of the lesion. Expect <em>variability</em> in every treatment response, and build that expectation into the consent conversation.<sup class="r">3,13</sup></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 4 SECTION: FOUR OPTIONS -->
+<section class="slide slide--navy">
+  <div class="chrome-top"></div>
+  <div class="slide-inner">
+    <div class="sec-kick reveal d1">The discussion</div>
+    <div class="sec-title reveal d2">Four Options, One Question: <em>How Deep Is It?</em></div>
+    <div class="sec-sub reveal d3">The options are not competitors. They are a ladder, and lesion depth decides which rung the case starts on and where it stops.</div>
+    <div class="optrow reveal d4">
+      <div class="optchip"><b>01</b>Bleaching</div>
+      <div class="optchip"><b>02</b>Microabrasion</div>
+      <div class="optchip"><b>03</b>Resin infiltration</div>
+      <div class="optchip"><b>04</b>Resin composite restoration</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 BLEACHING -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Option 01 <span class="dot"></span> Bleaching</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Option 01 <span class="kt">&nbsp;&middot; No tissue removed</span></div>
+    <div class="c-title reveal d2">Bleaching: Change the <em>Background</em>, Not the Lesion</div>
+    <div class="c-lead reveal d2">Bleaching does not treat the opacity. It lightens the enamel around it and oxidizes chromophores, which narrows the contrast the eye reads as a spot. That makes it a preparatory step rather than a definitive one.</div>
+    <div class="grid2 wide-left reveal d3">
+      <div class="panel accent">
+        <div class="badge-row"><span class="pill p-min">Least invasive</span><span class="pill p-evi">Reversible</span></div>
+        <div class="meter"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <span class="p-name">How it is used in these cases</span>
+        <span class="p-tag">Protocol from the case report</span>
+        <ul class="clean">
+          <li><strong>Agent and regimen.</strong> 10% carbamide peroxide in custom trays, 2 hours per day for 20 days, with the guardian supervising home use.<sup class="r">18</sup></li>
+          <li><strong>Result in that case.</strong> Shade moved from A2 to B1 by visual assessment, and restorative work was delayed one month afterward.<sup class="r">18</sup></li>
+          <li><strong>Why wait a month.</strong> Residual peroxide interferes with bonding, so any adhesive step follows the bleaching, not the other way around.<sup class="r">18</sup></li>
+          <li><strong>Sequence logic.</strong> Doing it first also matters optically: once a lesion is infiltrated or restored, its color is fixed while the surrounding enamel is not.</li>
+        </ul>
+      </div>
+      <div class="panel navyline">
+        <span class="p-name">The pediatric question</span>
+        <span class="p-tag">Policy and practice</span>
+        <ul class="clean">
+          <li><strong>AAPD position.</strong> Bleaching should sit inside an individualized, comprehensive, sequenced treatment plan; full-arch cosmetic bleaching in the mixed dentition is discouraged, and home products used by young patients should be adult-supervised.<sup class="r">7</sup></li>
+          <li><strong>European constraint.</strong> Products releasing more than 0.1% hydrogen peroxide are not to be used under age 18 in the EU, a concentration that is not clinically effective.<sup class="r">8</sup></li>
+          <li><strong>What colleagues do.</strong> In an EAPD survey of 110 members across 24 countries, 68% did not provide vital bleaching for children; among those who did, 72% used home bleaching, most with 10% carbamide peroxide, most commonly for two weeks, usually after the permanent dentition was established.<sup class="r">8</sup></li>
+          <li><strong>The trade-off named.</strong> Where bleaching was declined, the alternatives offered were generally more destructive and required more maintenance.<sup class="r">8</sup></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout reveal d4"><div>
+      <div class="cl">Discussion point</div>
+      <div class="ct">If the least invasive option in the ladder is the one most restricted by regulation, the ladder starts one rung higher and the tissue cost of the whole plan goes up. Worth asking the room how they handle this in their jurisdiction.<sup class="r">7,8</sup></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 6 MICROABRASION -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Option 02 <span class="dot"></span> Microabrasion</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Option 02 <span class="kt">&nbsp;&middot; A thin layer removed</span></div>
+    <div class="c-title reveal d2">Microabrasion: Excellent at the <em>Surface</em>, Blind Below It</div>
+    <div class="c-lead reveal d2">A hydrochloric acid and silicon carbide slurry, applied with a rubber cup at low speed, erodes and abrades simultaneously. It removes superficial discoloration and regularizes the surface, and it does so at a cost of enamel that does not come back.</div>
+    <div class="grid2 reveal d3">
+      <div class="panel accent">
+        <div class="badge-row"><span class="pill p-mid">Irreversible, superficial</span><span class="pill p-evi">Long clinical track record</span></div>
+        <div class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+        <span class="p-name">What it is good for</span>
+        <span class="p-tag">Indications supported in these cases</span>
+        <ul class="clean">
+          <li><strong>Superficial intrinsic stain.</strong> The classic indication, with follow-up reported over 18 years of clinical use.<sup class="r">9</sup></li>
+          <li><strong>Post-debonding surfaces.</strong> Removes residual bonding resin and the white remineralized stain around it, and smooths the enamel afterward.<sup class="r">10,18</sup></li>
+          <li><strong>Technique in the case.</strong> Macroabrasion first with a super-fine tapered diamond under copious water, then the microabrasive product with its dedicated rubber cup at low speed.<sup class="r">18</sup></li>
+          <li><strong>Aftercare.</strong> Neutral fluoride afterward, and saliva restores surface properties over time.<sup class="r">9</sup></li>
+        </ul>
+      </div>
+      <div class="panel grayline">
+        <span class="p-name">Where it stops</span>
+        <span class="p-tag">The ceiling, stated plainly</span>
+        <ul class="clean">
+          <li><strong>It is a surface treatment.</strong> Enamel microabrasion removes only a thin superficial layer, so a lesion that reaches the dentino-enamel junction is out of range by definition.<sup class="r">4,9</sup></li>
+          <li><strong>It does not open the lesion for resin.</strong> In vitro, microabrasion pre-treatment produced the <em>shallowest</em> infiltrant penetration of any group tested, 48.7 &micro;m against 178.2 &micro;m with no pre-treatment.<sup class="r">13</sup></li>
+          <li><strong>It declares failure late.</strong> In the case report, incisal stains on two teeth were still present two weeks after microabrasion because they lay deeper than the technique could reach, and both were converted to direct restorations.<sup class="r">18</sup></li>
+        </ul>
+        <div class="callout" style="margin-top:14px"><div>
+          <div class="cl">Practice point</div>
+          <div class="ct">Build the <b>two-week reassessment</b> into the plan and consent. It is not a complication, it is how a lesion tells you it is deeper than the surface.<sup class="r">18</sup></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 RESIN INFILTRATION -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Option 03 <span class="dot"></span> Resin infiltration</div>
+  <div class="slide-inner top">
+    <div class="kicker reveal d1">Option 03 <span class="kt">&nbsp;&middot; Microinvasive, fills rather than removes</span></div>
+    <div class="c-title reveal d2">Infiltration: The Only Option That Is <em>Esthetic and Structural</em></div>
+    <div class="c-lead reveal d2">Hydrochloric acid opens the surface, ethanol desiccates, and a low-viscosity resin is drawn into the porosities. Matching the refractive index of the lesion to enamel reduces scattering, and filling the pores reinforces the tissue. Both effects have clinical data behind them.</div>
+    <div class="grid3 reveal d3">
+      <div class="panel accent">
+        <span class="p-name">Esthetic outcome</span>
+        <span class="p-tag">12 studies, 369 teeth, ages 6 to 31<sup class="r">11</sup></span>
+        <div class="kv"><span class="k">Total masking, pooled</span><span class="v">37% (18 to 55)</span></div>
+        <div class="kv"><span class="k">Modified protocols</span><span class="v">40% (9 to 72)</span></div>
+        <div class="kv"><span class="k">Standard protocols</span><span class="v">30% (17 to 44)</span></div>
+        <div class="kv"><span class="k">Modified vs standard</span><span class="v">Not significant</span></div>
+        <div class="kv"><span class="k">Certainty</span><span class="v">Low, I&sup2; above 80%</span></div>
+        <div class="srcline">Counsel families toward <strong>improvement</strong>, not disappearance: complete masking in about one lesion in three.<sup class="r">11</sup></div>
+      </div>
+      <div class="panel navyline">
+        <span class="p-name">Structural outcome</span>
+        <span class="p-tag">RCT, 235 teeth, 18 months<sup class="r">12</sup></span>
+        <div class="kv"><span class="k">Breakdown, infiltration</span><span class="v good">6.1%</span></div>
+        <div class="kv"><span class="k">Breakdown, fluoride varnish</span><span class="v">17.9%</span></div>
+        <div class="kv"><span class="k">Breakdown, varnish plus etch</span><span class="v">17.3%</span></div>
+        <div class="kv"><span class="k">Odds vs infiltration</span><span class="v">3.0 and 3.1</span></div>
+        <div class="kv"><span class="k">Failure predictors</span><span class="v">Brown, cusps, DMFT &gt; 3, age 6 to 8</span></div>
+        <div class="srcline">This is the argument for infiltrating a lesion you have no intention of masking.<sup class="r">12</sup></div>
+      </div>
+      <div class="panel grayline">
+        <span class="p-name">Durability and limits</span>
+        <span class="p-tag">6-year follow-up and in vitro depth</span>
+        <div class="kv"><span class="k">Good color match at 1 yr</span><span class="v">90.6%</span></div>
+        <div class="kv"><span class="k">Good color match at 6 yr</span><span class="v good">93.2%</span></div>
+        <div class="kv"><span class="k">Teeth retained at 72 mo</span><span class="v">74 of 76</span></div>
+        <div class="kv"><span class="k">Penetration, no pre-treatment</span><span class="v">178.2 &micro;m</span></div>
+        <div class="kv"><span class="k">Range across specimens</span><span class="v">32.5 to 748.9 &micro;m</span></div>
+        <div class="srcline">What is gained stays gained,<sup class="r">14</sup> but how much is gained is unpredictable per tooth.<sup class="r">13</sup></div>
+      </div>
+    </div>
+    <div class="grid2 reveal d4" style="margin-top:16px">
+      <div class="panel">
+        <span class="p-name">Does pre-treatment help?</span>
+        <span class="p-tag">In vitro, 30 molars, confocal microscopy<sup class="r">13</sup></span>
+        <table class="dsheet">
+          <thead><tr><th>Pre-treatment</th><th class="rt">Mean penetration</th></tr></thead>
+          <tbody>
+            <tr><td class="p">Air abrasion</td><td class="val rt">287.7 &micro;m</td></tr>
+            <tr><td class="p">5.25% sodium hypochlorite</td><td class="val rt">275.6 &micro;m</td></tr>
+            <tr><td class="p">Air abrasion plus NaOCl</td><td class="val rt">245.4 &micro;m</td></tr>
+            <tr><td class="p">None</td><td class="val rt">178.2 &micro;m</td></tr>
+            <tr><td class="p">Microabrasion</td><td class="val rt">48.7 &micro;m</td></tr>
+          </tbody>
+        </table>
+        <div class="srcline">Differences could not be statistically verified (p = 0.322), and MIH lesions were penetrated significantly less than initial caries lesions. No pre-treatment is yet evidence-supported.<sup class="r">13</sup></div>
+      </div>
+      <div class="panel">
+        <span class="p-name">Reading &Delta;E in these papers</span>
+        <span class="p-tag">One slide of colour science, then we move on</span>
+        <ul class="clean">
+          <li><strong>What it is.</strong> The distance between two colors in a three-axis space, here between the opacity and the adjacent sound enamel. Smaller means better matched.</li>
+          <li><strong>Two flavours.</strong> &Delta;E*<sub>ab</sub> weights lightness, red-green, and blue-yellow equally; &Delta;E<sub>00</sub> reweights them to follow human vision, so the two are not interchangeable.<sup class="r">19</sup></li>
+          <li><strong>The two numbers to hold.</strong> Half of observers can see a difference of &Delta;E<sub>00</sub> 0.8, and half still accept &Delta;E<sub>00</sub> 1.8.<sup class="r">19</sup></li>
+          <li><strong>The common trap.</strong> The pooled &Delta;E of 3.08 is a <em>reduction</em> in the gap, not the gap that remains.<sup class="r">11</sup></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 COMPOSITE -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Option 04 <span class="dot"></span> Resin composite</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Option 04 <span class="kt">&nbsp;&middot; Affected tissue removed and replaced</span></div>
+    <div class="c-title reveal d2">Composite: Additive, But Only After You <em>Subtract</em></div>
+    <div class="c-lead reveal d2">When the opacity is deeper than the microinvasive options reach, or breakdown has already happened, the question becomes where to place the margin. The evidence says: in sound enamel.</div>
+    <div class="grid2 wide-left reveal d3">
+      <div class="panel navyline">
+        <span class="p-name">Why margins go in sound tissue</span>
+        <span class="p-tag">Adhesion evidence</span>
+        <table class="dsheet">
+          <thead><tr><th>Finding</th><th>Consequence</th></tr></thead>
+          <tbody>
+            <tr><td class="p">Bond strength</td><td class="m">Significantly lower to MIH enamel than to sound enamel, whichever adhesive class is used<sup class="r">15</sup></td></tr>
+            <tr><td class="p">Etch pattern</td><td class="m">Much less pronounced, and etching exposes porosities and voids that act as a weak link for the enamel-resin bond<sup class="r">15</sup></td></tr>
+            <tr><td class="p">Adhesive choice</td><td class="m">Total-etch outperformed self-etch on MIH enamel; dentin beneath the lesion bonds normally with either<sup class="r">15</sup></td></tr>
+            <tr><td class="p">Leaving affected tissue</td><td class="m">More restoration failures than when hypomineralized tissue is removed<sup class="r">16</sup></td></tr>
+            <tr><td class="p">Conservative alternative</td><td class="m">Sodium hypochlorite deproteinization has been proposed, but residual stain at an anterior margin defeats the esthetic purpose<sup class="r">16,18</sup></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel accent">
+        <div class="badge-row"><span class="pill p-max">Most invasive</span><span class="pill p-evi">Longest track record</span></div>
+        <div class="meter"><i class="on hi"></i><i class="on hi"></i><i class="on hi"></i><i class="on hi"></i><i class="on hi"></i></div>
+        <span class="p-name">Direct or indirect</span>
+        <span class="p-tag">RCT, upper premolars, mean 14 years<sup class="r">17</sup></span>
+        <div class="kv"><span class="k">Direct, survival</span><span class="v good">63.6% at 15.3 yr</span></div>
+        <div class="kv"><span class="k">Direct, annual failure</span><span class="v">2.4%</span></div>
+        <div class="kv"><span class="k">Indirect, survival</span><span class="v">54.5% at 13.9 yr</span></div>
+        <div class="kv"><span class="k">Indirect, annual failure</span><span class="v">3.3%</span></div>
+        <div class="kv"><span class="k">Difference</span><span class="v">Not significant</span></div>
+        <div class="srcline">With survival equivalent, direct wins on chair time, cost, and repairability, which matters in a patient facing a lifetime of maintenance.<sup class="r">17</sup></div>
+      </div>
+    </div>
+    <div class="callout reveal d4"><div>
+      <div class="cl">And prevention does not stop</div>
+      <div class="ct">Preventive measures should begin as soon as MIH is diagnosed, so breakdown, caries, and pain do not push the tooth toward endodontic or surgical treatment later.<sup class="r">2,18</sup></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 9 COMPARISON -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> Side by side</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">The four options compared</div>
+    <div class="c-title reveal d2">Same Case, <em>Four</em> Different Jobs</div>
+    <div class="panel reveal d3">
+      <table class="dsheet">
+        <thead><tr><th>Option</th><th>What it changes</th><th>Tissue cost</th><th>Best supported use</th><th>Where it fails</th><th class="rt">Src</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="p">Bleaching</td>
+            <td class="m">Lightens surrounding enamel and oxidizes chromophores</td>
+            <td class="val">None</td>
+            <td class="m">First step, to reduce contrast before any definitive treatment</td>
+            <td class="m">Does not treat the opacity itself; regulated for under-18 in the EU</td>
+            <td class="val rt">7, 8, 18</td>
+          </tr>
+          <tr>
+            <td class="p">Microabrasion</td>
+            <td class="m">Removes superficial stain and regularizes the surface</td>
+            <td class="val">Thin outer layer</td>
+            <td class="m">Superficial stain, residual bonding resin, post-debonding surfaces</td>
+            <td class="m">Cannot reach lesions extending toward the dentino-enamel junction</td>
+            <td class="val rt">4, 9, 10, 18</td>
+          </tr>
+          <tr>
+            <td class="p">Resin infiltration</td>
+            <td class="m">Fills lesion porosity, reduces scattering, reinforces enamel</td>
+            <td class="val">Minimal</td>
+            <td class="m">Non-cavitated demarcated opacities, esthetic and structural</td>
+            <td class="m">Total masking in about one third; penetration varies widely per tooth</td>
+            <td class="val rt">11, 12, 13, 14</td>
+          </tr>
+          <tr>
+            <td class="p">Resin composite</td>
+            <td class="m">Replaces removed tissue and restores form</td>
+            <td class="val">Highest</td>
+            <td class="m">Residual deep opacity, post-eruptive breakdown, structural loss</td>
+            <td class="m">Bond fails if margins are left in affected enamel</td>
+            <td class="val rt">15, 16, 17, 18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal d4"><div>
+      <div class="cl">The honest summary of the evidence base</div>
+      <div class="ct">Only <b>one</b> of these four has randomized clinical trial evidence for a hard structural outcome in MIH, and that is resin infiltration.<sup class="r">12</sup> The esthetic evidence across all four is dominated by case reports and small series, and the certainty of the pooled masking estimate is <em>low</em>.<sup class="r">11,20</sup></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 10 SEQUENCE -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> Sequencing</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Putting them in order</div>
+    <div class="c-title reveal d2">Start Low, Reassess, Escalate <em>Only</em> If Needed</div>
+    <div class="c-lead reveal d2">Depth is read before treatment, not after. In the case report, the tip of an LED curing light was placed against the palatal surface and each stain viewed from the buccal, where dark and intense areas indicate deep stains.<sup class="r">18</sup></div>
+    <div class="ladder reveal d3">
+      <div class="rung">
+        <div class="step">Step 01</div>
+        <h5>Bleach</h5>
+        <p>Lighten the background first, supervised at home, then wait before bonding anything. Nothing is removed and nothing is committed.<sup class="r">7,18</sup></p>
+      </div>
+      <div class="rung r2">
+        <div class="step">Step 02</div>
+        <h5>Abrade, then look again</h5>
+        <p>One conservative pass for superficial stain. Reassess at two weeks with the tooth hydrated. Residual opacity means the lesion is deeper than abrasion reaches.<sup class="r">18</sup></p>
+      </div>
+      <div class="rung r3">
+        <div class="step">Step 03</div>
+        <h5>Infiltrate</h5>
+        <p>For non-cavitated opacity that persists. Do it for structure even when masking is partial, since it cuts breakdown roughly threefold.<sup class="r">11,12</sup></p>
+      </div>
+      <div class="rung r4">
+        <div class="step">Step 04</div>
+        <h5>Restore</h5>
+        <p>Deep opacity or breakdown. Remove affected tissue to sound margins, total-etch, direct composite, incremental layering.<sup class="r">15,18</sup></p>
+      </div>
+    </div>
+    <div class="grid2 reveal d4" style="margin-top:16px">
+      <div class="panel accent">
+        <span class="p-name">Two chairside rules from the case</span>
+        <span class="p-tag">Worth repeating to residents</span>
+        <ul class="clean">
+          <li><strong>Judge esthetics on a hydrated tooth.</strong> On one lateral incisor the stain was obvious under rubber dam but disappeared once the tooth rehydrated in saliva, so no restoration was placed.<sup class="r">18</sup></li>
+          <li><strong>Transilluminate before you commit.</strong> The curing light you already hold doubles as the depth-assessment tool.<sup class="r">18</sup></li>
+        </ul>
+      </div>
+      <div class="panel navyline">
+        <span class="p-name">When to skip rungs</span>
+        <span class="p-tag">Escalate immediately if</span>
+        <ul class="clean">
+          <li><strong>Breakdown is already present.</strong> The tissue is gone; restoration is the entry point, not the last resort.<sup class="r">18</sup></li>
+          <li><strong>Brown opacity with cusp involvement in a 6 to 8 year old.</strong> Every predictor of failure is present at once.<sup class="r">12</sup></li>
+          <li><strong>The child cannot tolerate staged care.</strong> Treatment burden is a legitimate clinical variable in this population.<sup class="r">2,8</sup></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 CASE -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Case report <span class="dot"></span> Oper Dent 2020</div>
+  <div class="slide-inner top">
+    <div class="kicker reveal d1">All four options in one patient <span class="kt">&nbsp;&middot; 17 years old, 18-month follow-up</span></div>
+    <div class="c-title reveal d2">Where the Ladder <em>Actually</em> Stopped</div>
+    <div class="c-lead reveal d2">White, yellow, and brown stains on the buccal surfaces of the maxillary canines, laterals, and centrals, with creamy stains on the mandibular anteriors. History of low birth weight, severe anemia around age one, and chronic bronchitis from 18 months to 8 years with repeated amoxicillin and nebulizer use. Both mandibular first permanent molars had already been extracted at age ten.<sup class="r">18</sup></div>
+    <div class="grid2 wide-left reveal d3">
+      <div class="panel">
+        <span class="p-name">The restorative protocol as performed</span>
+        <span class="p-tag">Total-etch, three-step, direct composite<sup class="r">18</sup></span>
+        <ol class="proto">
+          <li><strong>Bleaching.</strong> 10% carbamide peroxide, 2 hours daily for 20 days; shade A2 to B1; restorations one month later.</li>
+          <li><strong>Chromatic mapping.</strong> Composite increments placed on the buccal surface before isolation to select dentin, enamel, and incisal shades.</li>
+          <li><strong>Removal.</strong> Rubber dam, then complete removal of hypomineralized stain with a spherical diamond bur under water irrigation.</li>
+          <li><strong>Etch.</strong> 35% phosphoric acid, 30 s on enamel and 15 s on dentin.</li>
+          <li><strong>Bond.</strong> Primer on dentin only, 15 s of air to evaporate solvent, unfilled adhesive over the whole preparation, cured 10 s with a polywave LED at 1,000 mW/cm&sup2;.</li>
+          <li><strong>Layer.</strong> Incremental technique respecting original anatomy: B2 dentin, B1 dentin, iridescent blue at the incisal third, pearl neutral enamel last.</li>
+          <li><strong>Finish.</strong> Aluminium oxide discs, abrasive rubber discs, silicon carbide brush, diamond paste with a goat-hair brush.</li>
+        </ol>
+      </div>
+      <div class="panel accent">
+        <span class="p-name">What the plan did, and what changed</span>
+        <span class="p-tag">Planned vs delivered</span>
+        <div class="kv"><span class="k">Planned bleaching</span><span class="v good">Delivered</span></div>
+        <div class="kv"><span class="k">Planned microabrasion</span><span class="v">Teeth 6, 7, 10</span></div>
+        <div class="kv"><span class="k">Planned composite</span><span class="v">Teeth 8, 9, 11</span></div>
+        <div class="kv"><span class="k">Converted at 2 weeks</span><span class="v">Teeth 6 and 7</span></div>
+        <div class="kv"><span class="k">Reason</span><span class="v">Stains deeper than abrasion reached</span></div>
+        <div class="kv"><span class="k">Left untreated by choice</span><span class="v">Mandibular stains</span></div>
+        <div class="kv"><span class="k">Follow-up</span><span class="v good">18 months, repolished</span></div>
+        <div class="callout" style="margin-top:14px"><div>
+          <div class="cl">The transferable lesson</div>
+          <div class="ct">Two of the three teeth planned for microabrasion needed restoration anyway. Plan the ladder, but <em>consent for the ladder</em>, not for a single rung.<sup class="r">18</sup></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 READING ROOM -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">Reading room <span class="dot"></span> Operative Dentistry 2020;45(4):343-351</div>
+  <div class="slide-inner top">
+    <div class="kicker reveal d1">Source paper <span class="kt">&nbsp;&middot; read it here</span></div>
+    <div class="c-title reveal d2" style="font-size:clamp(20px,2.4vw,30px);margin-bottom:6px">Molar Incisor Hypomineralization: Etiology, Clinical Aspects, and a Restorative Treatment Case Report</div>
+    <div class="rr reveal d3">
+      <div class="rr-meta">
+        <span class="rr-cite">Sundfeld D, da Silva LMS, Kluppel OJ, Santin GC, de Oliveira RCG, Pacheco RR, Pini NIP. <i>Operative Dentistry</i> 2020;45(4):343-351</span>
+        <a class="rr-tab" href="odnt-article-p343-2.pdf" target="_blank" rel="noopener">Open in a new tab</a>
+      </div>
+      <iframe class="rr-frame" src="odnt-article-p343-2.pdf#view=FitH&amp;navpanes=0" title="Sundfeld et al. Operative Dentistry 2020;45(4):343-351"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 13 DISCUSSION -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> Open floor</div>
+  <div class="slide-inner">
+    <div class="kicker reveal d1">Discussion</div>
+    <div class="c-title reveal d2">Five Questions <em>for</em> the Room</div>
+    <div class="c-lead reveal d2">The evidence points one way and everyday practice often points another. These are the five gaps where I would rather hear your answer than give mine.</div>
+    <div class="qgrid reveal d3">
+      <div class="qcard">
+        <span class="qnum">01</span>
+        <span class="qtext">
+          <span class="qask">Can we still start with bleaching?</span>
+          <span class="qwhy">In the EU, whitening products releasing more than 0.1% hydrogen peroxide cannot be used under age 18, and that concentration does not work. Skipping the gentlest step means starting at a more destructive one.<sup class="r">8</sup></span>
+        </span>
+      </div>
+      <div class="qcard">
+        <span class="qnum">02</span>
+        <span class="qtext">
+          <span class="qask">Should we infiltrate lesions we know we cannot mask?</span>
+          <span class="qwhy">Infiltration cut enamel breakdown from about 18% to 6% at 18 months, but completely masked only about one lesion in three. Is it a structural treatment first, with appearance as a bonus?<sup class="r">11,12</sup></span>
+        </span>
+      </div>
+      <div class="qcard">
+        <span class="qnum">03</span>
+        <span class="qtext">
+          <span class="qask">Are we conditioning surfaces out of habit?</span>
+          <span class="qwhy">No pre-treatment before infiltration has proven benefit, and in the lab microabrasion made the resin penetrate less, not more. What do you do before you infiltrate, and why?<sup class="r">13</sup></span>
+        </span>
+      </div>
+      <div class="qcard">
+        <span class="qnum">04</span>
+        <span class="qtext">
+          <span class="qask">How much sound enamel is a good bond worth?</span>
+          <span class="qwhy">Bonding improves when all affected enamel is removed, but that costs structure in a child who will have this tooth restored again and again. Where do you draw the line?<sup class="r">15,16</sup></span>
+        </span>
+      </div>
+      <div class="qcard" style="grid-column:1 / -1">
+        <span class="qnum">05</span>
+        <span class="qtext">
+          <span class="qask">What study would actually change what you do on Monday?</span>
+          <span class="qwhy">Most of the esthetic evidence here is case reports and small series, and the pooled masking estimate carries low certainty. Tell me the outcome, the follow-up, and the comparison that would settle it for you.<sup class="r">11,20</sup></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 REFERENCES -->
+<section class="slide">
+  <div class="chrome-top"></div><div class="event-ribbon">MIH <span class="dot"></span> References</div>
+  <div class="slide-inner top">
+    <div class="kicker reveal d1">Sources</div>
+    <div class="c-title reveal d2" style="font-size:clamp(22px,2.6vw,32px)">References</div>
+    <div class="reflist reveal d3">
+      <div><b>1</b>Weerheijm KL, J&auml;levik B, Alaluusua S. Molar-incisor hypomineralisation. <i>Caries Res.</i> 2001;35(5):390-391.</div>
+      <div><b>2</b>Lygidakis NA, Wong F, J&auml;levik B, Vierrou AM, Alaluusua S, Espelid I. Best clinical practice guidance for clinicians dealing with children presenting with molar-incisor hypomineralisation (MIH): an EAPD policy document. <i>Eur Arch Paediatr Dent.</i> 2010;11(2):75-81.</div>
+      <div><b>3</b>Crombie FA, Manton DJ, Palamara JE, Zalizniak I, Cochrane NJ, Reynolds EC. Characterisation of developmentally hypomineralised human enamel. <i>J Dent.</i> 2013;41(7):611-618.</div>
+      <div><b>4</b>Elhennawy K, Manton DJ, Crombie F, Zaslansky P, Radlanski RJ, Jost-Brinkmann PG, Schwendicke F. Structural, mechanical and chemical evaluation of molar-incisor hypomineralization-affected enamel: a systematic review. <i>Arch Oral Biol.</i> 2017;83:272-281.</div>
+      <div><b>5</b>Da Costa-Silva CM, Ambrosano GMB, Jeremias F, De Souza JF, Mialhe FL. Increase in severity of molar-incisor hypomineralization and its relationship with the colour of enamel opacity: a prospective cohort study. <i>Int J Paediatr Dent.</i> 2011;21(5):333-341.</div>
+      <div><b>6</b>Fagrell TG, Lingstr&ouml;m P, Olsson S, Steiniger F, Nor&eacute;n JG. Bacterial invasion of dentinal tubules beneath apparently intact but hypomineralized enamel in molar teeth with molar incisor hypomineralization. <i>Int J Paediatr Dent.</i> 2008;18(5):333-340.</div>
+      <div><b>7</b>American Academy of Pediatric Dentistry. Policy on the use of dental bleaching for child and adolescent patients. <i>The Reference Manual of Pediatric Dentistry.</i> Chicago: AAPD; 2025:136-140.</div>
+      <div><b>8</b>Monteiro J, Ashley PF, Parekh S. Vital bleaching for children with dental anomalies: EAPD members' survey. <i>Eur Arch Paediatr Dent.</i> 2020;21(5):565-571.</div>
+      <div><b>9</b>Sundfeld RH, Croll TP, Briso ALF, de Alexandre RS, Sundfeld Neto D. Considerations about enamel microabrasion after 18 years. <i>Am J Dent.</i> 2007;20(2):67-72.</div>
+      <div><b>10</b>Sundfeld RH, Franco LM, Machado LS, Pini NIP, Salom&atilde;o FM, Anchieta RB, Sundfeld D. Treatment of enamel surfaces after bracket debonding: case reports and long-term follow-ups. <i>Oper Dent.</i> 2016;41(1):8-14.</div>
+      <div><b>11</b>Prado NA, Jorge RC, Moreira RF, Effenberger S, Cebula M, Fidalgo TKDS, Soviero VM. Does the application protocol influence the masking effect of resin infiltration on MIH opacities? Systematic review and meta-analysis. <i>J Dent.</i> 2025;155:105617.</div>
+      <div><b>12</b>Costa Nogueira VK, Mendes Soares IP, Bullio Fragelli CM, Boldieri T, Manton DJ, Bussaneli DG, Loiola Cordeiro RC. Structural integrity of MIH-affected teeth after treatment with fluoride varnish or resin infiltration: an 18-month randomized clinical trial. <i>J Dent.</i> 2021;105:103570.</div>
+      <div><b>13</b>Amend S, Stork S, L&uuml;cker S, Seipp A, G&auml;rtner U, Frankenberger R, Kr&auml;mer N. Influence of different pre-treatments on the resin infiltration depth into enamel of teeth affected by molar-incisor hypomineralization (MIH). <i>Dent Mater.</i> 2024;40(7):1015-1024.</div>
+      <div><b>14</b>Mazur M, Westland S, Ndokaj A, et al. In-vivo colour stability of enamel after ICON treatment at 6 years of follow-up: a prospective single center study. <i>J Dent.</i> 2022;122:103943.</div>
+      <div><b>15</b>Kr&auml;mer N, Bui Khac NN, L&uuml;cker S, Stachniss V, Frankenberger R. Bonding strategies for MIH-affected enamel and dentin. <i>Dent Mater.</i> 2018;34(2):331-340.</div>
+      <div><b>16</b>S&ouml;nmez H, Saat S. A clinical evaluation of deproteinization and different cavity designs on resin restoration performance in MIH-affected molars: two-year results. <i>J Clin Pediatr Dent.</i> 2017;41(5):336-342.</div>
+      <div><b>17</b>Hofsteenge JW, Fennis WMM, Kuijs RH, &Ouml;z&ccedil;an M, Cune MS, Gresnigt MMM. Clinical survival and performance of premolars restored with direct or indirect cusp-replacing resin composite restorations with a mean follow-up of 14 years. <i>Dent Mater.</i> 2023;39(4):383-390.</div>
+      <div><b>18</b>Sundfeld D, da Silva LMS, Kluppel OJ, Santin GC, de Oliveira RCG, Pacheco RR, Pini NIP. Molar incisor hypomineralization: etiology, clinical aspects, and a restorative treatment case report. <i>Oper Dent.</i> 2020;45(4):343-351.</div>
+      <div><b>19</b>Paravina RD, Ghinea R, Herrera LJ, et al. Color difference thresholds in dentistry. <i>J Esthet Restor Dent.</i> 2015;27(Suppl 1):S1-S9.</div>
+      <div><b>20</b>da Cunha Coelho ASE, Mata PCM, Lino CA, Macho VMP, Areias CMFGP, Norton APMAP, Augusto APCM. Dental hypomineralization treatment: a systematic review. <i>J Esthet Restor Dent.</i> 2019;31(1):26-39.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 CLOSING -->
+<section class="slide slide--navy">
+  <div class="chrome-top"></div>
+  <div class="slide-inner">
+    <div class="closing-kicker reveal d1">Treatment options for MIH</div>
+    <div class="closing-title reveal d2">Start low.<br>Reassess.<br>Escalate only if needed.</div>
+    <div class="closing-line reveal d3"></div>
+    <div class="closing-meta reveal d4">
+      <div><span class="cm-label">Presented by</span><span class="cm-value">Rafael Rocha Pacheco, DDS, MSc, PhD</span></div>
+      <div><span class="cm-label">Contact</span><span class="cm-value">RAPACHECO@augusta.edu</span></div>
+      <div><span class="cm-label">Institution</span><span class="cm-value">Dental College of Georgia, Augusta University</span></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<nav class="nav-controls">
+  <button class="nav-btn" id="prev" aria-label="Previous slide">&larr;</button>
+  <div class="nav-dots" id="dots"></div>
+  <span class="nav-counter"><span class="current" id="counter-current">01</span> / <span id="counter-total">15</span></span>
+  <button class="nav-btn" id="next" aria-label="Next slide">&rarr;</button>
+</nav>
+<button class="theme-btn" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+  <svg class="moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  <svg class="sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</button>
+<button class="fs-btn" id="fullscreen" title="Fullscreen" aria-label="Toggle fullscreen">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 9 4 4 9 4"></polyline><polyline points="15 4 20 4 20 9"></polyline><polyline points="20 15 20 20 15 20"></polyline><polyline points="9 20 4 20 4 15"></polyline></svg>
+</button>
+
+<script>
+(function(){
+  var current=0;
+  var slides=document.querySelectorAll('.slide');
+  var dotsEl=document.getElementById('dots');
+  var curEl=document.getElementById('counter-current');
+  var totEl=document.getElementById('counter-total');
+  function buildDots(){
+    dotsEl.innerHTML='';
+    Array.prototype.forEach.call(slides,function(_,i){
+      var d=document.createElement('button');
+      d.className='nav-dot'+(i===current?' active':'');
+      d.type='button';
+      d.setAttribute('aria-label','Go to slide '+(i+1));
+      d.addEventListener('click',function(){goTo(i);});
+      dotsEl.appendChild(d);
+    });
+    totEl.textContent=String(slides.length).padStart(2,'0');
+    curEl.textContent=String(current+1).padStart(2,'0');
+  }
+  function goTo(idx){
+    if(idx<0||idx>=slides.length||idx===current)return;
+    var out=slides[current],inc=slides[idx];
+    out.classList.remove('active');out.classList.add('prev');
+    inc.classList.add('active','entering');
+    void inc.offsetWidth;
+    inc.classList.remove('entering');
+    setTimeout(function(){out.classList.remove('prev');},520);
+    dotsEl.querySelectorAll('.nav-dot').forEach(function(d,i){d.classList.toggle('active',i===idx);});
+    current=idx;
+    curEl.textContent=String(current+1).padStart(2,'0');
+    inc.scrollTop=0;
+  }
+  slides[0].classList.add('active');
+  buildDots();
+  document.getElementById('prev').addEventListener('click',function(){goTo(current-1);});
+  document.getElementById('next').addEventListener('click',function(){goTo(current+1);});
+  document.getElementById('fullscreen').addEventListener('click',function(){
+    if(!document.fullscreenElement){if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen();}
+    else if(document.exitFullscreen)document.exitFullscreen();
+  });
+  document.getElementById('theme-toggle').addEventListener('click',function(){document.body.classList.toggle('dark');});
+  document.addEventListener('keydown',function(e){
+    var t=e.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA')return;
+    if(e.target.closest&&e.target.closest('.rr'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown')goTo(current+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')goTo(current-1);
+    else if(e.key==='Home')goTo(0);
+    else if(e.key==='End')goTo(slides.length-1);
+    else if(e.key==='f'||e.key==='F')document.getElementById('fullscreen').click();
+  });
+  var tx=0,ty=0;
+  document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx;
+    var dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)){dx<0?goTo(current+1):goTo(current-1);}
+  },{passive:true});
+})();
+
+</script>
+</body>
+</html>
